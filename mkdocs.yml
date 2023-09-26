@@ -164,6 +164,12 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+# Math renders
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 # Page tree
 nav:
   - 首页: index.md
@@ -173,3 +179,8 @@ nav:
     - 面向对象: language-basic/object-oriented.md
   - STL:
     - 容器: stl/containers.md
+    - 智能指针: stl/smart-pointers.md
+  - 算法:
+    - 排序算法: algorithm/sort-algorithm.md
+  - 网络:
+    - 计算机网络: network/computer-networking.md
