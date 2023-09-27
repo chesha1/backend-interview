@@ -169,7 +169,7 @@ markdown_extensions:
 
 # Math renders
 extra_javascript:
-  - javascripts/mathjax.js
+#  - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
@@ -188,3 +188,5 @@ nav:
     - 排序算法: algorithm/sort-algorithm.md
   - 网络:
     - 计算机网络: network/computer-networking.md
+  - 操作系统:
+    - 操作系统理论: operating-system/theory.md

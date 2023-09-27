@@ -35,3 +35,8 @@ https://stackoverflow.com/questions/22295665/how-much-is-the-overhead-of-smart-p
 ## `weak_ptr` 是不是线程安全的？
 - `std::weak_ptr` 和 `std::shared_ptr` 都有控制块，对控制块（引用计数）是线程安全的。
 - `std::weak_ptr::lock` 是一个成员函数，用于尝试“升级” `weak_ptr` 到一个 `shared_ptr`，这个接口也是线程安全的。
+
+## 智能指针相互引用的冲突问题怎么解决？
+当两个智能指针对象相互引用时，可能会导致循环引用的问题。例如，如果两个 `std::shared_ptr` 对象互相引用，那么这两个对象的引用计数永远不会下降到0，因此涉及的对象永远不会被销毁，导致内存泄漏。
+
+为了解决这个问题，可以使用 `std::weak_ptr` 来打破循环。`std::weak_ptr` 本质上是一个观察者，它可以观察 `std::shared_ptr` 所管理的对象，但不会增加对象的引用计数。
