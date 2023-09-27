@@ -8,12 +8,17 @@
 
 [//]: # (</p>)
 
-<p align="center">
-  <font size="70">
-    后端面试题
-  </font>
-</p>
+[//]: # (<p align="center">)
 
+[//]: # (  <font size="70">)
+
+[//]: # (    后端面试题)
+
+[//]: # (  </font>)
+
+[//]: # (</p>)
+
+<h1 align="center" style="margin-top: 0px;">后端面试题</h1>
 
 <p align="center">
     Backend interview questions on top of
@@ -68,7 +73,8 @@
 
 <p align="center">
   <a href="https://squidfunk.github.io/mkdocs-material/getting-started/">
-    <img src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/screenshot.png" width="700" />
+    <img src="https://github.com/chesha1/backend-interview/blob/master/docs/assets/screenshot.png" width="700" />
+    
   </a>
 </p>
 
