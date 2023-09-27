@@ -13,7 +13,8 @@ __Check out our [blog], which is created with the new [built-in blog plugin]!__
   [category]: ../plugins/blog.md#categories
   [post slugs]: ../plugins/blog.md#config.post_url_format
   [pagination]: ../plugins/blog.md#pagination
-  [blog]: ../blog/index.md
+
+[//]: # (  [blog]: ../blog/index.md)
 
 ## Configuration
 
