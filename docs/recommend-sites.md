@@ -7,10 +7,18 @@
 
 <div class="grid cards" markdown>
 
-- :material-language-java: __[JavaGuide]__ – 使用人数最多，包括部分 Java 面试题
-- :fontawesome-solid-cat: __[小林 coding]__ – 操作系统和计算机网络部分，内容更详细
-- :fontawesome-solid-user-astronaut: __[编程指北]__ – 包括部分 C++ 面试题
-- :octicons-cloud-16: __[阿秀的学习笔记]__ – 没使用过不评价，看上去内容也很详细
+[//]: # (- :material-language-java: __[JavaGuide]__ – 使用人数最多，包括部分 Java 面试题)
+
+[//]: # (- :fontawesome-solid-cat: __[小林 coding]__ – 操作系统和计算机网络部分，内容更详细)
+
+[//]: # (- :fontawesome-solid-user-astronaut: __[编程指北]__ – 包括部分 C++ 面试题)
+
+[//]: # (- :octicons-cloud-16: __[阿秀的学习笔记]__ – 没使用过不评价，看上去内容也很详细)
+
+- __[JavaGuide]__ – 使用人数最多，包括部分 Java 面试题
+- __[小林 coding]__ – 操作系统和计算机网络部分，内容更详细
+- __[编程指北]__ – 包括部分 C++ 面试题
+- __[阿秀的学习笔记]__ – 没使用过不评价，看上去内容也很详细
 
 </div>
 
