@@ -79,12 +79,14 @@
 </p>
 
 <p align="center">
+ <strong>
   <em>
-    Check out the demo –
+    网站链接 –
     <a
       href="https://squidfunk.github.io/mkdocs-material/"
-    >squidfunk.github.io/mkdocs-material</a>.
+    >squidfunk.github.io/mkdocs-material</a>
   </em>
+</strong>
 </p>
 
 <h2></h2>

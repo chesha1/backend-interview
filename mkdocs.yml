@@ -20,7 +20,7 @@
 
 # Project information
 site_name: 后端面试题汇总
-site_url: https://squidfunk.github.io/mkdocs-material/
+#site_url: https://squidfunk.github.io/mkdocs-material/
 site_author: Martin Donath
 site_description: >-
   Write your documentation in Markdown and create a professional static site in
@@ -78,7 +78,8 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/favicon.png
+#  favicon: assets/favicon.png
+  favicon: assets/stack-of-books.png
   icon:
     logo: logo
   # change icon of whole website here
@@ -177,10 +178,11 @@ extra_javascript:
 nav:
   - 首页: index.md
   - 推荐资源: recommend-sites.md
-  - 语言基础:
+  - C++ 语法:
     - 基本概念: language-basic/basic-concepts.md
     - 内存相关: language-basic/memory.md
     - 面向对象: language-basic/object-oriented.md
+    - 现代 C++: language-basic/modern-cpp.md
   - STL:
     - 容器: stl/containers.md
     - 智能指针: stl/smart-pointers.md
@@ -188,5 +190,8 @@ nav:
     - 排序算法: algorithm/sort-algorithm.md
   - 网络:
     - 计算机网络: network/computer-networking.md
+    - 网络编程: network/network-programming.md
   - 操作系统:
     - 操作系统理论: operating-system/theory.md
+    - Linux 操作: operating-system/operation.md
+  - 其他: others.md
