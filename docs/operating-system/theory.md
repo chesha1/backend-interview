@@ -16,3 +16,31 @@
 
 ## CPU 是如何将虚拟地址翻译成物理地址的？
 内容较长，建议直接查看文章：https://zhuanlan.zhihu.com/p/636718404
+
+## Linux 系统如何使用共享内存？有哪些方式？
+在 Linux 中，共享内存是进程间通信 (IPC) 的一种机制，允许两个或更多进程访问同一块内存空间。以下是使用共享内存的几种方式：
+
+1. **System V 共享内存**:
+    - System V IPC 机制提供了一个传统的共享内存解决方案。使用 `shmget()`, `shmat()`, `shmdt()`, 和 `shmctl()` 这些函数可以创建、附加、分离和控制共享内存段。
+    - 示例：
+      ```c
+      int shmid = shmget(key, size, IPC_CREAT | 0666);
+      char* shared_mem = (char*)shmat(shmid, NULL, 0);
+      ```
+
+2. **POSIX 共享内存**:
+    - POSIX 提供了另一种方式来创建共享内存，通常使用在 `/dev/shm` 虚拟文件系统上的文件。
+    - 使用 `shm_open()`, `ftruncate()`, 和 `mmap()` 可以创建和映射共享内存。
+    - 示例：
+      ```c
+      int fd = shm_open("/my_shm", O_CREAT | O_RDWR, 0666);
+      ftruncate(fd, size);
+      void* ptr = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+      ```
+
+
+3. **共享内存对象**:
+    - 这主要与 C++ 相关，Boost 和其他第三方库提供了更高级的、封装好的共享内存解决方案。
+
+
+可以参考：https://cloud.tencent.com/developer/article/1551288
