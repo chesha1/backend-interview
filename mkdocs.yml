@@ -195,3 +195,6 @@ nav:
     - 操作系统理论: operating-system/theory.md
     - Linux 操作: operating-system/operation.md
   - 其他: others.md
+  - Go:
+    - 基础语法: go/basic.md
+    - map: go/map.md
