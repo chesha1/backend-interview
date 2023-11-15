@@ -198,3 +198,5 @@ nav:
   - Go:
     - 基础语法: go/basic.md
     - map: go/map.md
+    - channel: go/channel.md
+    - 并发: go/concurrency.md

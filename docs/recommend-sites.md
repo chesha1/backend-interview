@@ -19,6 +19,9 @@
 - __[小林 coding]__ – 操作系统和计算机网络部分，内容更详细
 - __[编程指北]__ – 包括部分 C++ 面试题
 - __[阿秀的学习笔记]__ – 没使用过不评价，看上去内容也很详细
+- __[GO专家编程]__ – 专注于 Go 相关的八股，比较详细
+- __[CSView]__ – 各种八股都有，还标了知识点的重要程度
+
 
 </div>
 
@@ -26,3 +29,5 @@
 [小林 coding]: https://xiaolincoding.com/
 [编程指北]: https://csguide.cn/
 [阿秀的学习笔记]: https://interviewguide.cn/
+[GO专家编程]: https://www.topgoer.cn/docs/gozhuanjia/gogfjhk
+[CSView]: https://www.csview.cn/
