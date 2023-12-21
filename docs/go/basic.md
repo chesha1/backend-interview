@@ -9,11 +9,11 @@
        type Point struct {
            X, Y int
        }
-    
+
        p1 := Point{1, 2}
        p2 := Point{1, 2}
        p3 := Point{2, 3}
-    
+
        fmt.Println(p1 == p2) // 输出：true
        fmt.Println(p1 == p3) // 输出：false
        ```
@@ -83,7 +83,7 @@
 2. **扩容策略**：
 
       - 对于容量小于 256 的切片，新容量通常是当前容量的两倍。
-   
+
       - 对于容量大于或等于 256 的切片，$\rm{newcap = oldcap+(oldcap+3 \times 256)/4}$
 
       - 但是，考虑到内存对齐，新容量会比上面的公式计算出来的容量更大
@@ -100,21 +100,21 @@
 以下是如何使用 `race detector` 的简要指南：
 
 1. **编译/运行代码时使用 `-race` 选项**：
-   
+
     当编译、测试或运行你的程序时，加上 `-race` 选项。
-   
+
        ```bash
        go run -race your_program.go
        ```
-    
+
        或
-    
+
        ```bash
        go test -race ./...
        ```
 
 2. **分析输出**：
-   
+
     如果 `race detector` 检测到数据竞争，它将在标准输出中打印相关的警告，包括竞争发生的位置和涉及的 goroutines。
 
 3. **解决数据竞争**：
@@ -125,34 +125,120 @@
 
     ```go
     package main
-    
+
     import (
         "fmt"
         "sync"
     )
-    
+
     func main() {
         var wg sync.WaitGroup
         m := make(map[int]int)
-    
+
         wg.Add(2)
-    
+
         go func() {
             for i := 0; i < 1000; i++ {
                 m[i] = i
             }
             wg.Done()
         }()
-    
+
         go func() {
             for i := 0; i < 1000; i++ {
                 fmt.Println(m[i])
             }
             wg.Done()
         }()
-    
+
         wg.Wait()
     }
     ```
 
     如果你使用 `race detector` 运行上面的代码，你会看到一个关于数据竞争的警告。
+
+## `defer` 的使用场景和原理?
+**使用场景**
+
+`defer` 语句在 Go 语言中用于确保函数调用在正常执行路径（包括出现错误时）结束后能被执行。主要使用场景包括：
+
+1. **资源清理**：如关闭文件句柄、数据库连接、网络连接等。通过 `defer` 确保资源无论如何都会被释放，防止资源泄露。
+
+    ```go
+    f, err := os.Open(filename)
+    if err != nil {
+        return err
+    }
+    defer f.Close() // 确保文件关闭
+    ```
+
+2. **锁的释放**：在处理并发时，确保互斥锁（mutex）在函数结束时被释放。
+
+    ```go
+    mu.Lock()
+    defer mu.Unlock() // 确保锁被释放
+    //... do something ...
+    ```
+
+3. **延迟执行代码**：对于需要在函数结束时执行的代码，如日志记录、发送通知、错误处理等。
+
+    ```go
+    defer log.Println("Function has been executed")
+    ```
+
+4. **复杂逻辑的清理代码**：简化有多个返回点的函数的清理代码。
+
+    ```go
+    func complexFunction() (err error) {
+        res, err := doSomething()
+        if err != nil {
+            return err
+        }
+        defer res.Cleanup() // 清理资源
+        // 更多逻辑
+    }
+    ```
+
+**原理**
+
+`defer` 的工作原理和执行机制如下：
+
+1. **后进先出（LIFO）顺序**：`defer` 语句遵循 LIFO 顺序。最后一个被 `defer` 的语句将首先执行。
+
+2. **参数立即求值**：在 `defer` 语句被执行时，所有函数参数都会被立即求值。但是 `defer` 语句中的函数本身直到包含它的函数执行结束前才被调用。
+
+3. **函数作用域内有效**：`defer` 语句仅在定义它的函数的作用域内有效。
+
+4. **返回值影响**：如果在 `defer` 语句中使用了命名返回值，它可以修改这些返回值。
+
+5. **panic处理**：`defer` 语句即使在发生 panic 时也会执行，因此它们常用于恢复（recover）操作。
+
+6. **执行时机**：`defer` 语句在包含它的函数执行的 return 语句之后、返回值返回给调用者之前执行。
+
+`defer` 的这些特性使得它在资源管理和错误处理方面非常有用，帮助编写清晰和可维护的代码。
+
+## 如果我要在 `defer` 里面修改 return 里面的值呢？这时怎么写？
+如果你想在 `defer` 语句中修改函数的返回值，你可以使用命名返回值。在函数声明中为返回值命名后，这个命名变量在整个函数范围内都是有效的，包括 `defer` 语句中。
+
+这里有个例子来展示如何在 `defer` 中修改返回值：
+
+```go
+func example() (result int) {
+    defer func() {
+        // 修改返回值
+        result++
+    }()
+
+    // 设置返回值
+    result = 3
+
+    return // 这里实际返回的将是4
+}
+
+func main() {
+    fmt.Println(example()) // 输出：4
+}
+```
+
+在这个例子中，函数 `example` 有一个命名返回值 `result`。在 `defer` 函数中，我们增加了 `result` 的值。当 `example` 函数返回时，由于 `defer` 已经修改了 `result` 的值，所以实际返回的值是修改后的值。
+
