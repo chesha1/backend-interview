@@ -201,3 +201,5 @@ nav:
     - channel: go/channel.md
     - 并发: go/concurrency.md
     - 内存: go/memory.md
+  - 功能测试:
+    - 测试: test.md
